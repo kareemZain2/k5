@@ -63,9 +63,9 @@ $ajaxUtils.sendGetRequest(allCategoriesUrl,buildAndShowHomeHTML(categories),true
 function buildAndShowHomeHTML (categories) {
   $ajaxUtils.sendGetRequest(
     homeHtmlUrl,
-    function (homeHtml) {
+    function (homeHtmlUrl) {
       var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
-      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml,"randomCategoryShortName","'" + chosenCategoryShortName + "'");
+      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtmlUrl,"randomCategoryShortName","'" + chosenCategoryShortName + "'");
       insertHtml("#main-content",homeHtmlToInsertIntoMainPage)
     },false);
 }
