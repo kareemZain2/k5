@@ -58,7 +58,7 @@ var switchMenuToActive = function () {
 };
 document.addEventListener("DOMContentLoaded", function (event) {
 showLoading("#main-content");
-$ajaxUtils.sendGetRequest(allCategoriesUrl,buildAndShowHomeHTML(categories),true);
+$ajaxUtils.sendGetRequest(homeHtml,buildAndShowHomeHTML(categories),true);
 });
 function buildAndShowHomeHTML (categories) {
   $ajaxUtils.sendGetRequest(
