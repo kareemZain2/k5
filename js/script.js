@@ -13,7 +13,7 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 
 var dc = {};
 
-var homeHtmlUrl = "snippets/home-snippet.html";
+var homeHtml = "snippets/home-snippet.html";
 var allCategoriesUrl = "https://davids-restaurant.herokuapp.com/categories.json";
 var categoriesTitleHtml = "snippets/categories-title-snippet.html";
 var categoryHtml = "snippets/category-snippet.html";
@@ -62,10 +62,10 @@ $ajaxUtils.sendGetRequest(allCategoriesUrl,buildAndShowHomeHTML(categories),true
 });
 function buildAndShowHomeHTML (categories) {
   $ajaxUtils.sendGetRequest(
-    homeHtmlUrl,
-    function (homeHtmlUrl) {
+    homeHtml,
+    function (homeHtml) {
       var chosenCategoryShortName = chooseRandomCategory(categories).short_name;
-      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtmlUrl,"randomCategoryShortName","'" + chosenCategoryShortName + "'");
+      var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml,"randomCategoryShortName","'" + chosenCategoryShortName + "'");
       insertHtml("#main-content",homeHtmlToInsertIntoMainPage)
     },false);
 }
@@ -89,9 +89,7 @@ function buildAndShowCategoriesHTML (categories) {
   $ajaxUtils.sendGetRequest(
     categoriesTitleHtml,
     function (categoriesTitleHtml) {
-      $ajaxUtils.sendGetRequest(
-        categoryHtml,
-        function (categoryHtml) {
+      $ajaxUtils.sendGetRequest(categoryHtml,function (categoryHtml) {
           switchMenuToActive();
           var categoriesViewHtml = buildCategoriesViewHtml(categories,categoriesTitleHtml,categoryHtml);
           insertHtml("#main-content", categoriesViewHtml);
